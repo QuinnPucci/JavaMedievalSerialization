@@ -8,7 +8,7 @@ public class MedievalGame {
     Player player;
 
     /* Main Method */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         Scanner console = new Scanner(System.in);
         MedievalGame game = new MedievalGame();
@@ -45,9 +45,10 @@ public class MedievalGame {
 
     /* Instance Methods */
     private Player start(Scanner console) {
-        // Add start functionality here
-
-        return new Player("Test");
+        Player player;
+        Art.homeScreen();
+        System.out.println("");
+        return player;
     } // End of start
 
     private void save() throws IOException {
@@ -58,10 +59,13 @@ public class MedievalGame {
 
     } // End of save
 
-    private Player load(String playerName, Scanner console) {
-        // Add load functionality here
-
-        return new Player("Test");
+    // pass player name to look for savefile
+    private Player load (String playerName, Scanner console) throws IOException, ClassNotFoundException {
+        Player loadedPlayer;
+        FileInputStream loadFile = new FileInputStream(playerName);
+        ObjectInputStream savedPlayer = new ObjectInputStream(loadFile);
+        loadedPlayer = (Player) savedPlayer.readObject();
+        return loadedPlayer;
     } // End of load
 
     // Adds a delay to the console so it seems like the computer is "thinking"
