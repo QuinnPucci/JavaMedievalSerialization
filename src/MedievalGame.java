@@ -1,12 +1,14 @@
 import java.util.Scanner;
 import java.util.Objects;
+import java.io.*;
 
 public class MedievalGame {
 
     /* Instance Variables */
+    Player player;
 
     /* Main Method */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner console = new Scanner(System.in);
         MedievalGame game = new MedievalGame();
@@ -48,8 +50,11 @@ public class MedievalGame {
         return new Player("Test");
     } // End of start
 
-    private void save() {
-        // Add save functionality here
+    private void save() throws IOException {
+        String fileName = player.getName() + ".svr";
+        FileOutputStream saveFile = new FileOutputStream(fileName);
+        ObjectOutputStream playerSaver = new ObjectOutputStream(saveFile);
+        playerSaver.writeObject(player);
 
     } // End of save
 
