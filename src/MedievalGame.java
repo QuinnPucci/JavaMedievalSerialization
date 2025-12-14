@@ -44,11 +44,30 @@ public class MedievalGame {
     } // End of main
 
     /* Instance Methods */
-    private Player start(Scanner console) {
+    private Player start(Scanner console) throws IOException, ClassNotFoundException {
         Player player;
         Art.homeScreen();
-        System.out.println("");
+        System.out.println("Welcome, adventurer.");
+        System.out.println("Have you been here before (y to load game, n for new game).\n");
+        String answer = console.next().toLowerCase(); // input parsing
+        if (answer.equals("y")){
+           System.out.println("What was the name of the player? (Save files use the player name).\n");
+           String loadedPlayer = console.next().toLowerCase();
+           player = load(console.next(), console);
+        } else if (answer.equals("n")) {
+            System.out.println("Enter the name of the player\n");
+            String newPlayerName = console.next().toLowerCase();
+            player = new Player(newPlayerName);
+        } else {
+            System.out.println("Invalid Input. Initializing new game");
+            System.out.println("Enter the name of the player\n");
+            String newPlayerName = console.next().toLowerCase();
+            player = new Player(newPlayerName);                  
+        }
         return player;
+
+        // TODO: add a while true so players can input again if they land on the else statement
+
     } // End of start
 
     private void save() throws IOException {
