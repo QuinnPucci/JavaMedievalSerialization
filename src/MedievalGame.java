@@ -68,6 +68,8 @@ public class MedievalGame {
 
         // TODO: add a while true so players can input again if they land on the else statement
 
+        //TODO: Game not loading new save just yet. something to do with how load is being called from opening sequence
+
     } // End of start
 
     private void save() throws IOException {
